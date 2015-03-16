@@ -40,7 +40,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="cptweetclient"
+                    android:host="mtweetclient"
                     android:scheme="oauth" />
             </intent-filter>
         </activity>
