@@ -2,25 +2,35 @@ package com.codepath.apps.tweetclient;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.util.Log;
+import android.widget.ListView;
 
+import com.codepath.apps.tweetclient.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 
 public class TimelineActivity extends ActionBarActivity {
 
     private TwitterClient client;
+    private ArrayList<Tweet> tweets;
+    private TweetsArrayAdapter aTweets;
+    private ListView lvTweets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+        lvTweets = (ListView) findViewById(R.id.lvTweets);
+        tweets = new ArrayList<>();
+        aTweets = new TweetsArrayAdapter(this, tweets);
+        lvTweets.setAdapter(aTweets);
         client = TwitterApplication.getRestClient(); // singleton client
         populateTimeline();
     }
@@ -35,9 +45,10 @@ public class TimelineActivity extends ActionBarActivity {
                 super.onSuccess(statusCode, headers, jsonArray);
                 Log.d("CLAY", jsonArray.toString());
                 // Deserialize JSON
-                // Create models
+
                 // populate the ListView
-                
+                aTweets.addAll(Tweet.fromJSONArray(jsonArray));
+                Log.d("CLAY", aTweets.toString());
             }
 
             @Override
