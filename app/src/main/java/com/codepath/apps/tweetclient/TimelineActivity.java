@@ -34,6 +34,10 @@ public class TimelineActivity extends ActionBarActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
                 super.onSuccess(statusCode, headers, jsonArray);
                 Log.d("CLAY", jsonArray.toString());
+                // Deserialize JSON
+                // Create models
+                // populate the ListView
+                
             }
 
             @Override
