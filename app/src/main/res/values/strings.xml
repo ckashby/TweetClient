@@ -7,5 +7,6 @@
     <string name="title_activity_timeline">Home Timeline</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="tv_placeholder">Placeholder</string>
 
 </resources>
